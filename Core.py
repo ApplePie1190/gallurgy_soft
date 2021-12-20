@@ -7,6 +7,12 @@ def get_list(folders_only=False):
         result = [f for f in result if os.path.isdir(f)]
     print(result)
 
+# def change_name_new():
+#     result = os.listdir()
+#     for temp in result:
+#         if (temp.count('-') >= 4) and ('.pdf' in temp) and ('ОЛ' not in temp) and ('ИСХ' not in temp) and and ('.С' not in temp):
+#             test_set = temp.split('-')
+
 
 
 
@@ -39,8 +45,34 @@ def true_list_number():
 
 
 if __name__ == '__main__':
-    true_list_number()
-    change_name()
+
+    result = os.listdir()
+    i = 0
+    print(result)
+    for temp in result:
+        if (temp.count('-') >= 4) and ('.pdf' in temp) and ('ОЛ' not in temp) and ('ИСХ' not in temp) and ('.С' not in temp):
+            test_set = temp.split('-')
+            print(test_set)
+            test_set.pop()
+            print(test_set)
+            if len(test_set) >= 6:
+                test_set.pop(4)
+                print(test_set)
+                clean_number = test_set[3]
+                true_number = clean_number.split('.')
+                true_number[1] = str(int(true_number[1]) + i)
+                clean_number = '.'.join(true_number)
+                test_set[3] = clean_number
+                i += 1
+                print(test_set)
+            print(test_set)
+            true_name = '-'.join(test_set) + '.pdf'
+            shutil.copy(temp, true_name)
+            os.remove(temp)
+
+
+
+
 
 
 
